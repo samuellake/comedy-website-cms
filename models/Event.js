@@ -14,8 +14,10 @@ var Event = new keystone.List('Event', {
 Event.add({
   eventName: {type: String, required: true},
   eventDate: {type: Types.Date, default: Date.now, required: true},
+	eventTime: {type: String, default: '00:00', required: true},
   eventLocation: {type: String },
-  eventImage: {type: Types.CloudinaryImage }
+  eventImage: {type: Types.Relationship, ref: 'Image', many: false },
+  eventTicketURL: {type: String }
 });
 
 Event.schema.virtual('content.full').get(function () {

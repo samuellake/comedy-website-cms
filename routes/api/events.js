@@ -2,12 +2,13 @@ var async = require('async'),
 	keystone = require('keystone');
 
 var Event = keystone.list('Event');
+var Image = keystone.list('Image');
 
 /**
  * List Posts
  */
 exports.list = function(req, res) {
-	Event.model.find(function(err, items) {
+	Event.model.find().populate('eventImage').exec(function(err, items) {
 
 		if (err) return res.apiError('database error', err);
 
